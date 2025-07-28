@@ -1,0 +1,457 @@
+/* Custom CSS for Your IT Company Website - Professional Look */
+
+/* --- General Styling & Typography --- */
+body {
+    font-family: 'Inter', sans-serif; /* Professional body font */
+    color: #555555; /* Darker gray for body text - excellent readability */
+    line-height: 1.7;
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+    background-color: #F8F8F8; /* Soft, consistent background */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif; /* Strong, modern heading font */
+    color: #1E3A5F; /* Sophisticated Navy for headings */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* --- Professional Color Palette Variables --- */
+:root {
+    --primary-navy: #1E3A5F;     /* Sophisticated Navy */
+    --secondary-grey-blue: #5C7D9B; /* Subtle Grey-Blue */
+    --accent-gold-mature: #C8A25D; /* Mature Gold/Bronze */
+    --highlight-teal: #5CB8B2;    /* Clean Teal */
+    --text-rich-black: #333333;   /* For bold text/important headers */
+    --text-dark-gray: #555555;    /* For body text */
+    --bg-white: #FFFFFF;         /* Pure White Background */
+    --bg-light-gray: #F8F8F8;    /* Off-White Background */
+    --border-light: #EAEAEA;     /* Light Gray Border */
+}
+
+/* --- Applying Colors & Overrides --- */
+.bg-primary-navy { background-color: var(--primary-navy) !important; }
+.text-primary-navy { color: var(--primary-navy) !important; }
+.bg-accent-gold { background-color: var(--accent-gold-mature) !important; }
+.text-accent-gold { color: var(--accent-gold-mature) !important; } /* For specific icons/highlights */
+.bg-light-gray { background-color: var(--bg-light-gray) !important; }
+.text-dark-gray-body { color: var(--text-dark-gray) !important; }
+
+/* --- Custom Buttons (Clean, defined, professional) --- */
+.btn-primary-professional {
+    background-color: var(--accent-gold-mature);
+    border-color: var(--accent-gold-mature);
+    color: var(--primary-navy); /* Text color contrast */
+    font-weight: 600;
+    padding: 0.9rem 2.5rem;
+    border-radius: 8px; /* Slightly less rounded */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+}
+.btn-primary-professional:hover {
+    background-color: #b39050; /* Slightly darker gold */
+    border-color: #b39050;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-white-pro {
+    border: 2px solid var(--bg-white);
+    color: var(--bg-white);
+    font-weight: 500;
+    padding: 0.9rem 2.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+}
+.btn-outline-white-pro:hover {
+    background-color: var(--bg-white);
+    color: var(--primary-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-link-dark { /* For "Learn More" links */
+    color: var(--primary-navy) !important;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.btn-link-dark:hover {
+    color: var(--accent-gold-mature) !important;
+    text-decoration: underline;
+}
+
+.btn-outline-secondary-blue { /* For portfolio snippet links */
+    border: 1px solid var(--secondary-grey-blue);
+    color: var(--secondary-grey-blue);
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+.btn-outline-secondary-blue:hover {
+    background-color: var(--secondary-grey-blue);
+    color: var(--bg-white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+/* --- Navbar Styling (Clean, unobtrusive, highly functional) --- */
+.navbar {
+    background-color: var(--primary-navy);
+    padding: 1rem 0; /* Slightly more padding */
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle initial shadow */
+}
+.navbar.scrolled {
+    background-color: rgba(30, 58, 95, 0.95) !important; /* Semi-transparent navy */
+    padding: 0.7rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px); /* More pronounced glassmorphism */
+}
+.navbar-brand {
+    font-size: 2rem;
+    letter-spacing: -0.7px;
+    font-weight: 700;
+}
+.navbar-brand img {
+    filter: brightness(1.2);
+}
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    padding: 0.8rem 1.6rem;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--accent-gold-mature) !important;
+    transform: translateY(-2px);
+}
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-gold-mature);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 1px;
+}
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: calc(100% - 32px);
+}
+
+/* --- Hero Section (Impactful, authoritative) --- */
+.hero-section {
+    position: relative;
+    height: 95vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--bg-white);
+    padding-top: 100px; /* Adjust for taller navbar */
+}
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    filter: brightness(0.5) blur(2px); /* Slightly darker and more blur */
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(30, 58, 95, 0.9), rgba(92, 125, 155, 0.8)); /* Gradient with new palette */
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 2rem;
+}
+.hero-content h1 {
+    font-size: 4.8rem;
+    line-height: 1.1;
+    color: var(--bg-white); /* Fallback */
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to right, var(--accent-gold-mature), var(--highlight-teal)); /* Professional gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInSlideUp 1.8s ease-out;
+}
+.hero-content p.lead {
+    font-size: 1.7rem;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeInSlideUp 1.5s ease-out forwards;
+    animation-delay: 0.7s;
+    opacity: 0;
+}
+.hero-buttons {
+    animation: zoomIn 1.5s ease-out forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+}
+
+/* Custom Keyframe Animations (for Hero) */
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Responsive Adjustments for Hero --- */
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 3.8rem; }
+    .hero-content p.lead { font-size: 1.5rem; }
+}
+@media (max-width: 768px) {
+    .hero-section { height: 85vh; }
+    .hero-content h1 { font-size: 3rem; }
+    .hero-content p.lead { font-size: 1.3rem; }
+    .btn-primary-professional, .btn-outline-white-pro {
+        padding: 0.8rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 576px) {
+    .hero-section { height: 75vh; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p.lead { font-size: 1.1rem; }
+    .hero-buttons .btn {
+        display: block;
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
+
+/* --- Section Headings --- */
+.section-heading {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 3.5rem; /* More space for a clean look */
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-gold-mature);
+    border-radius: 2px;
+}
+.section-heading.text-left::after {
+    left: 0;
+    transform: translateX(0);
+}
+
+
+/* --- Cards (General Styles - Problem/Solution, Service, Portfolio) --- */
+.card {
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    background-color: var(--bg-white);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden; /* For images in portfolio cards */
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+}
+.card-body {
+    padding: 2.5rem !important;
+}
+.card i { /* Icons in cards */
+    font-size: 3.8rem;
+    margin-bottom: 1.8rem;
+    background: -webkit-linear-gradient(45deg, var(--accent-gold-mature), var(--highlight-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.card-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--text-rich-black);
+}
+.card-text {
+    color: var(--text-dark-gray);
+    font-size: 0.95rem;
+}
+
+/* --- Service Feature List (within Core Services) --- */
+.service-features li {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-dark-gray);
+}
+.service-features i {
+    font-size: 1.25rem;
+    vertical-align: middle;
+}
+.text-highlight-teal { /* Specific color for checkmarks */
+    color: var(--highlight-teal) !important;
+}
+
+/* --- Why Choose Us Section --- */
+.why-us-list li {
+    font-size: 1.15rem;
+    margin-bottom: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+.why-us-list i {
+    font-size: 1.6rem;
+    vertical-align: middle;
+    color: var(--accent-gold-mature);
+}
+.why-us-list strong {
+    color: var(--bg-white);
+    font-weight: 600;
+}
+
+/* --- Portfolio Card Specifics --- */
+.portfolio-card .card-img-top {
+    height: 220px; /* Fixed height for image consistency */
+    object-fit: cover; /* Ensures image covers area */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.portfolio-card .card-body {
+    padding-top: 1.5rem !important; /* Adjust padding for visual balance */
+    padding-bottom: 1.5rem !important;
+}
+
+/* --- Testimonials Section (Trust-building, elegant) --- */
+.testimonial-card {
+    background-color: var(--bg-white);
+    border-radius: 15px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+    padding: 3.5rem !important;
+    position: relative;
+}
+.testimonial-card::before {
+    content: "\f10d";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 25px;
+    left: 35px;
+    font-size: 6rem;
+    color: var(--bg-light-gray);
+    opacity: 0.8;
+    z-index: 0;
+}
+.testimonial-card .lead {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--text-dark-gray);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+}
+.testimonial-card img {
+    border: 4px solid var(--accent-gold-mature);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+.carousel-control-prev,
+.carousel-control-next {
+    background: rgba(30, 58, 95, 0.8);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: var(--primary-navy);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+    font-size: 1.7rem;
+    color: white;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+.carousel-control-prev-icon::before { content: "\f104"; } /* Chevron left */
+.carousel-control-next-icon::before { content: "\f105"; } /* Chevron right */
+
+
+/* --- Call to Action (CTA) Section --- */
+.cta-section {
+    background-color: var(--accent-gold-mature);
+    padding: 4.5rem 0; /* More vertical space for impact */
+}
+.cta-section h2 {
+    color: var(--primary-navy);
+    margin-bottom: 1.5rem;
+}
+.cta-section p.lead {
+    color: var(--text-dark-gray);
+    font-size: 1.3rem;
+}
+
+/* --- Footer (Solid & Informative) --- */
+footer {
+    background-color: var(--primary-navy);
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+footer h5 {
+    color: var(--bg-white);
+}
+footer a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.2s ease;
+}
+footer a.hover-accent:hover {
+    color: var(--accent-gold-mature) !important;
+}
+.social-icons a {
+    font-size: 1.5rem;
+}
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.15);
+    color: var(--accent-gold-mature) !important;
+}
+
+/* --- WOW.js Animations (Helper classes from Animate.css) --- */
+.wow {
+    visibility: hidden; /* Hide elements before animation */
+}
