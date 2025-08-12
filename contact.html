@@ -187,7 +187,7 @@
         <p>Have questions or need a quote? Fill out the form below — we’re here to help you with your next digital
             project.</p>
 
-        <form id="contactForm">
+        <form id="contactForm" method="POST">
             <div class="error-message" id="errorMsg"></div>
 
             <input type="text" name="name" id="name" placeholder="Your Name" required>
@@ -198,6 +198,7 @@
             <button type="submit">Send Message</button>
         </form>
     </section>
+
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Devnd Design. All rights reserved.</p>
@@ -212,10 +213,16 @@
                     title="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
+                <a href="https://www.facebook.com/profile.php?id=61579149397942&mibextid=ZbWKwL" target="_blank"
+                    title="facbook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/devnddesign/" target="_blank" title="linked">
+                    <i class="fab fa-linkedin"></i>
+                </a>
                 <a href="https://wa.me/9427777481" target="_blank" title="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-
             </div>
         </div>
     </footer>
@@ -261,14 +268,14 @@
 
             // Prepare form for FormSubmit
             const form = e.target;
-            form.action = "https://formsubmit.co/devndesign11gmail.com";
+            form.action = "https://formsubmit.co/devnddesign11@gmail.com";
             form.method = "POST";
 
             form.insertAdjacentHTML('beforeend', `
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
-      `);
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://devdsigen.onrender.com/thank-you.html">
+            `);
 
             form.submit();
         });
@@ -280,7 +287,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-WD10GXCTMY');
     </script>
 </body>
