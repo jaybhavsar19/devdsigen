@@ -20,178 +20,522 @@
             font-family: 'Inter', sans-serif;
         }
 
+        :root {
+            --primary-bg: #0b0f1a;
+            --secondary-bg: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
         body {
-            background-color: #0b0f1a;
+            background-color: var(--primary-bg);
             color: #e0e0e0;
+            overflow-x: hidden;
         }
 
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0b0f1a, #1e293b, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header with glass effect */
         header {
-            background-color: #0f172a;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #1e293b;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        header h1 {
-            font-size: 26px;
-            color: #38bdf8;
+        .navbar-brand {
+            font-size: 28px !important;
+            background: linear-gradient(45deg, #38bdf8, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        nav a {
-            margin-left: 30px;
-            text-decoration: none;
-            color: #cbd5e1;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.5));
+            }
+
+            to {
+                filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8));
+            }
         }
 
-        nav a:hover {
-            color: #38bdf8;
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero section with enhanced animations */
         .hero {
-            height: 90vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to right, #0f172a, #1e293b);
             text-align: center;
             padding: 20px;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+            z-index: 2;
         }
 
         .hero h2 {
-            font-size: 48px;
+            font-size: 56px;
             color: #ffffff;
             margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: typewriter 3s steps(30) 1s forwards, fadeInUp 1s ease-out;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 22px;
             color: #94a3b8;
             max-width: 700px;
+            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
         .cta-btn {
             margin-top: 30px;
-            padding: 12px 28px;
-            background-color: #38bdf8;
-            color: #0f172a;
+            padding: 16px 32px;
+            background: linear-gradient(45deg, #38bdf8, #0ea5e9);
+            color: #ffffff;
             border: none;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
         }
 
         .cta-btn:hover {
-            background-color: #0ea5e9;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
         }
 
+        /* Floating tech icons */
+        .tech-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: var(--accent-color);
+            opacity: 0.6;
+            animation: floatTech 8s ease-in-out infinite;
+        }
+
+        .tech-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .tech-icon:nth-child(2) {
+            top: 60%;
+            left: 85%;
+            animation-delay: 2s;
+        }
+
+        .tech-icon:nth-child(3) {
+            top: 40%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .tech-icon:nth-child(4) {
+            top: 80%;
+            left: 70%;
+            animation-delay: 6s;
+        }
+
+        @keyframes floatTech {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* Section animations */
         .section {
-            padding: 60px 40px;
-            max-width: 1100px;
+            padding: 80px 40px;
+            max-width: 1200px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section h3 {
-            font-size: 32px;
-            color: #38bdf8;
-            margin-bottom: 20px;
+            font-size: 42px;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
         }
 
-        .section p {
-            font-size: 18px;
-            color: #cbd5e1;
-            line-height: 1.6;
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #38bdf8, #0ea5e9);
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
+        /* Enhanced service boxes */
         .services {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            margin-top: 50px;
         }
 
         .service-box {
-            background-color: #1e293b;
-            padding: 20px;
-            border-radius: 12px;
-            flex: 1 1 30%;
-            min-width: 250px;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .service-box img {
+        .service-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.1));
+            transform: translateX(-100%);
+            transition: all 0.6s ease;
+        }
+
+        .service-box:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .service-box:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
         }
 
         .service-box h4 {
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 600;
         }
 
         .service-box p {
-            font-size: 15px;
+            font-size: 16px;
             color: #94a3b8;
+            line-height: 1.6;
         }
 
+        /* AI badge */
+        .ai-badge {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Footer enhancements */
         .footer {
-            background-color: #0a1f3d;
+            background: linear-gradient(135deg, #0a1f3d, #1e293b);
             color: #ffffff;
-            padding: 25px 20px;
+            padding: 40px 20px;
             text-align: center;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .footer-links {
-            list-style: none;
-            margin: 10px 0 15px;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #00b4d8;
-            text-decoration: underline;
-        }
-
-        .social-icons {
-            margin-top: 10px;
+            border-top: 1px solid rgba(56, 189, 248, 0.3);
+            position: relative;
         }
 
         .social-icons a {
-            margin: 0 10px;
-            font-size: 22px;
+            margin: 0 15px;
+            font-size: 28px;
             color: #ffffff;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .social-icons a:hover {
-            color: #00b4d8;
+            color: var(--accent-color);
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(56, 189, 248, 0.3);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section h3 {
+                font-size: 32px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Loading screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Loading DevndDesign...</p>
+        </div>
+    </div>
+
+    <!-- Animated background -->
+    <div class="animated-bg"></div>
+
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
     <header class="bg-dark border-bottom border-secondary py-3 px-4">
         <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
             <a class="navbar-brand text-info fw-bold" href="#">DevndDesign</a>
@@ -220,53 +564,74 @@
     </header>
 
     <section class="hero" id="home">
-        <h2>Innovative Web & IT Solutions</h2>
-        <p>We deliver high-performance digital experiences that help businesses scale with confidence and clarity.</p>
-        <button class="cta-btn">Get Started</button>
+        <div class="tech-icons">
+            <i class="fas fa-code tech-icon"></i>
+            <i class="fas fa-mobile-alt tech-icon"></i>
+            <i class="fas fa-robot tech-icon"></i>
+            <i class="fas fa-chart-line tech-icon"></i>
+        </div>
+        <div class="hero-content">
+            <h2>Innovative AI-Powered IT Solutions</h2>
+            <p>We deliver cutting-edge digital experiences with AI integration that help businesses scale with
+                confidence and clarity in the digital age.</p>
+            <button class="cta-btn" onclick="scrollToSection('services')">Explore Our Services</button>
+        </div>
     </section>
 
     <section class="section" id="about">
         <h3>Who We Are</h3>
-        <p>DevndDesign is a Gujarat-based technology company focused on crafting powerful and scalable IT solutions.
-            From website development to full-stack software engineering, we bring client ideas to life with innovation
-            and professionalism.</p>
+        <p>DevndDesign is a Gujarat-based technology company focused on crafting powerful, scalable, and AI-enhanced IT
+            solutions. From intelligent website development to full-stack software engineering with machine learning
+            integration, we bring client ideas to life with innovation and cutting-edge technology.</p>
     </section>
 
     <section class="section" id="services">
-        <h3>Our Services</h3>
+        <h3>Our Advanced Services</h3>
         <div class="services">
             <div class="service-box">
-                <img src="Img/seo.png" alt="Website Development" />
-                <h4>Website Development</h4>
-                <p>We build responsive, SEO-friendly, and visually appealing websites for businesses and brands.</p>
+                <i class="fas fa-globe service-icon"></i>
+                <h4>Smart Website Development</h4>
+                <p>We build responsive, SEO-optimized, and AI-enhanced websites with chatbots, personalization, and
+                    intelligent user experiences.</p>
             </div>
             <div class="service-box">
-                <img src="/Img/app.png" alt="App Development" />
-                <h4>App Development</h4>
-                <p>Custom Android and iOS app development with excellent UI/UX and performance optimization.</p>
+                <i class="fas fa-mobile-alt service-icon"></i>
+                <h4>AI-Powered App Development</h4>
+                <p>Custom Android and iOS apps with AI features like voice recognition, image processing, and predictive
+                    analytics for enhanced user engagement.</p>
             </div>
             <div class="service-box">
-                <img src="/Img/DIGITAL MARKETING.png" alt="Digital Marketing" />
-                <h4>Digital Marketing</h4>
-                <p>Complete marketing strategies including SEO, Instagram ads, and lead generation solutions.</p>
+                <div class="ai-badge">AI POWERED</div>
+                <i class="fas fa-brain service-icon"></i>
+                <h4>AI-Based Digital Marketing</h4>
+                <p>Revolutionary marketing strategies using machine learning for audience targeting, automated content
+                    creation, predictive analytics, and intelligent ad optimization.</p>
             </div>
             <div class="service-box">
-                <img src="/Img/graphic.png" alt="Graphic Design" />
-                <h4>Graphic Design</h4>
-                <p>We design engaging social media posts, logos, and branding material that leave lasting impressions.
-                </p>
+                <i class="fas fa-palette service-icon"></i>
+                <h4>Creative Design Solutions</h4>
+                <p>We design engaging social media content, logos, and branding materials using AI-assisted design tools
+                    for maximum visual impact.</p>
             </div>
             <div class="service-box">
-                <img src="/Img/e comm.png" alt="E-commerce Solutions" />
-                <h4>E-commerce Solutions</h4>
-                <p>Setup and manage Shopify, Meesho, and custom eCommerce stores with integrated payment gateways.</p>
+                <i class="fas fa-shopping-cart service-icon"></i>
+                <h4>Smart E-commerce Solutions</h4>
+                <p>Setup intelligent Shopify, Meesho, and custom eCommerce stores with AI-powered recommendations,
+                    chatbots, and automated inventory management.</p>
+            </div>
+            <div class="service-box">
+                <div class="ai-badge">NEW</div>
+                <i class="fas fa-robot service-icon"></i>
+                <h4>AI Automation & Chatbots</h4>
+                <p>Custom AI chatbots, process automation, and intelligent customer service solutions to streamline your
+                    business operations and improve efficiency.</p>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="footer-content">
-            <p>&copy; 2025 Devnd Design. All rights reserved.</p>
+            <p>&copy; 2025 DevndDesign Technology. All rights reserved.</p>
 
             <ul class="footer-links">
                 <li><a href="/privacy-policy.html">Privacy Policy</a></li>
@@ -279,10 +644,10 @@
                     <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61579149397942&mibextid=ZbWKwL" target="_blank"
-                    title="facbook">
+                    title="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://www.linkedin.com/company/devnddesign/" target="_blank" title="linked">
+                <a href="https://www.linkedin.com/company/devnddesign/" target="_blank" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
                 <a href="https://wa.me/9427777481" target="_blank" title="WhatsApp">
@@ -298,12 +663,96 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-WD10GXCTMY');
+
+        // Loading screen
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function () {
+            createParticles();
+
+            // Observe all sections for scroll animations
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add scroll effect to header
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(15, 23, 42, 0.95)';
+                } else {
+                    header.style.background = 'rgba(15, 23, 42, 0.8)';
+                }
+            });
+
+            // Add click animations to service boxes
+            document.querySelectorAll('.service-box').forEach(box => {
+                box.addEventListener('click', function () {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+
+        // Add typing effect to hero text on load
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
     </script>
-
-
-
 </body>
 
 </html>
